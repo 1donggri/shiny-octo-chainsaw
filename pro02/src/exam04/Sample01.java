@@ -6,16 +6,16 @@ public class Sample01 {
 		// 논리 부정 연산자 -> !
 		boolean b1 = true;
 		boolean b2 = !b1;
-		System.out.println("논리 부정 연산 결과 : " + b2);
+		System.out.println("b2 논리 부정 연산 결과 : " + b2);
 		
 		// 증감 연산자 -> ++, --
 		//		- 증감 연산은 해당하는 변수의 값이 변화한다.
 		int i1 = 1;
 		int i2 = ++i1;
 		int i3 = --i1;
-		System.out.println("증감 연산 결과 : " + i2);
-		System.out.println("증감 연산 결과 : " + i3);
-		System.out.println("증감 연산 결과 : " + i1);
+		System.out.println("i2 증감 연산 결과 : " + i2);
+		System.out.println("i3 증감 연산 결과 : " + i3);
+		System.out.println("i1 증감 연산 결과 : " + i1);
 		
 		/* 
 		 * 증감 연산의 전위/후위 연산
@@ -35,10 +35,10 @@ public class Sample01 {
 		int i6 = 1;
 		int i7 = i6++;
 		
-		System.out.println("전위 연산 결과 : " + i5);
-		System.out.println("후위 연산 결과 : " + i7);
+		System.out.println("i5 전위 연산 결과 : " + i5);
+		System.out.println("i7 후위 연산 결과 : " + i7);
 		
-		System.out.println("전위 후위에 사용한 변수의 값 : " + i4 + ", " + i6);
+		System.out.println("i4, i6 전위 후위에 사용한 변수의 값 : " + i4 + ", " + i6);
 	}
 
 }
