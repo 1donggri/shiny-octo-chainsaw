@@ -9,7 +9,7 @@ public class Time {
 	public void setHour(int h) {
 		hour = h;
 	}
-	public void getHour() {
+	public int getHour() {
 		return hour;
 	}
 	
