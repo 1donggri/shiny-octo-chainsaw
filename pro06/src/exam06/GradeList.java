@@ -112,30 +112,48 @@ public class GradeList {
 		return this.gArr[idx].getScore();
 	}
 	
+	public double getScore(double score) {
+		int idx = findIndex(score);
+		return this.gArr[idx].getScore();
+	}
+	
 	public double getAvg() {
-		return 0;
+		return getTotal() / length();
 	}
 	
 	public double getTotal() {
+		double total = 0;
 		for(int i = 0; i < length(); i++) {
-			
+			total += this.gArr[i].getScore();
 		}
-		return 0;
+		return total;
 	}
 	
 	public String[] getUnder() {
 		// 과락의 기준은 100점 만점을 기준으로 40점 미만인 것.
-		return null;
+		return getUnder(40);
 	}
 	
 	public String[] getUnder(double score) {
-		// 과락의 기준을 외부 값으로 받아서 찾아내는 함수
-		return null;
+		String [] temp = new String[0];
+		for(int i = 0; i < length(); i++) {
+			if(this.gArr[i].getScore() < score) {
+				temp = Arrays.copyOf(temp, temp.length + 1);
+				temp[temp.length - 1] = this.gArr[i].getName();
+			}
+		}
+		return temp;
 	}
 	
 	public String getTop() {
 		// 최고 득점을 받은 과목을 찾아내는 함수
-		return null;
+		Grade top = gArr[0];
+		for(int i = 1; i < length(); i++) {
+			if(top.getScore() < gArr[i].getScore()) {
+				top = gArr[i];
+			}
+		}
+		return top.getName();
 	}
 	
 	public String[] getTop(int count) {
@@ -145,11 +163,17 @@ public class GradeList {
 	
 	public String getBottom() {
 		// 최저 득점을 받은 과목을 찾아내는 함수
-		return null;
+		Grade bottom = gArr[0];
+		for(int i = 1; i < length(); i++) {
+			if(bottom.getScore() > gArr[i].getScore()) {
+				bottom = gArr[i];
+			}
+		}
+		return bottom.getName();
 	}
 	
 	public String[] getBottom(int count) {
-		// 최고 득점을 받은 과목을 count 만큼 찾아내는 함수
+		// 최저 득점을 받은 과목을 count 만큼 찾아내는 함수
 		return null;
 	}
 	
