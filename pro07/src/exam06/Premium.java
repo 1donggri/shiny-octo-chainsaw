@@ -1,4 +1,4 @@
-package exam04;
+package exam06;
 
 import java.util.Objects;
 
@@ -12,6 +12,28 @@ public class Premium extends Customer {
 		amount += price;
 		double p = _calcDiscount(price);
 		System.out.printf("%s 상품의 할인율은 %.2f 로 적용되어 %.2f 원에 구입하였습니다. \n", productName, discount, p);
+	}
+	
+	public void renew() {
+		if(amount < 5000000) {
+			
+		}
+	}
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
 	}
 
 	private double _calcDiscount(int price) {
