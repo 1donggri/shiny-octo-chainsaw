@@ -13,6 +13,11 @@ public class Customer {
 		amount += price;
 		System.out.printf("%s 상품을 %d원에 구입하였습니다. \n", productName, price);
 	}
+	
+	public void refund(String productName, int price) {
+		amount -= price;
+		System.out.printf("%s 상품을 %d원에 환불하였습니다. \n", productName, price);
+	}
 
 	@Override
 	public int hashCode() {
