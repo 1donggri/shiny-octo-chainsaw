@@ -23,17 +23,9 @@ public class Nomal extends Customer {
 		count ++;	
 	}
 	
-	public void refund(String productName, int price, boolean resume) {
-		if(resume == true) {
-			System.out.printf("%s 상품을 %d원에 환불하였습니다. \n", productName, price);
-		} else {
-			System.out.println("구입 영수증이 없어 환불 불가 합니다.");
-		}
-		
+	@Override
+	public void refund() {
+		System.out.println("일반 고객은 영수증이 있어야 환불을 할 수 있습니다.");
 	}
-
-	
-	
-
 
 }

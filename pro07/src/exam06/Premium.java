@@ -14,10 +14,18 @@ public class Premium extends Customer {
 		System.out.printf("%s 상품의 할인율은 %.2f 로 적용되어 %.2f 원에 구입하였습니다. \n", productName, discount, p);
 	}
 	
-	public void renew() {
+	@Override
+	public Customer renewal() {
+		System.out.println("고객 정보를 갱신합니다.");
+		Customer c = this;
 		if(amount < 5000000) {
-			
+			c = new Nomal();
+			c.setName(getName());
+			c.setAge(getAge());
+			c.setGender(getGender());
+			System.out.println("누적사용액이 기준에 미달하여 일반 고객으로 강등 조치되었습니다.");
 		}
+		return c;
 	}
 
 	public double getDiscount() {

@@ -52,6 +52,18 @@ public class Main {
 			}
 		}
 		
+		Customer[] cArr = new Customer[3];
+		cArr[0] = new Nomal();
+		cArr[1] = new Premium();
+		cArr[2] = new Employee();
+		
+		for(int i = 0; i < cArr.length; i++) {
+			// cArr[i].buy("물품", 5000000);
+			// cArr[i].refund();
+			System.out.println(cArr[i].getClass());
+			cArr[i] = cArr[i].renewal();
+			System.out.println(cArr[i].getClass());
+		}
 		
 	}
 
