@@ -18,6 +18,11 @@ public class Main {
 //		e4.payMonth();	e4.bonus();	((Level4)e4).card(826000);
 //		e5.payMonth();	e5.bonus();	((Level5)e5).card(1300000);
 		
+		((Level3)e3).setTeamManager(true);
+		((Level4)e4).setHeadManager(true);
+		((Level5)e5).setTeamManager(true);
+		((Level5)e5).setHeadManager(true);
+		
 		Employee[] empArr = new Employee[5];
 		empArr[0] = e1;	empArr[1] = e2;	empArr[2] = e3;
 		empArr[3] = e4;	empArr[4] = e5;
@@ -32,13 +37,16 @@ public class Main {
 				System.out.printf("이름 : %s \n", empArr[idx].getName());
 				empArr[idx].payMonth();
 				empArr[idx].bonus(month);
+				if(empArr[idx] instanceof TeamManager) {
+					((TeamManager)empArr[idx]).teamPayBonus();
+				}
 				System.out.println("===========================");
 			}
-			if((rand.nextInt(9) + 1) % 4 == 0) {
-				int loc = rand.nextInt(4) + 1;
-				System.out.printf("%s 님이 ", empArr[loc].getName());
-				((Level2)empArr[loc]).card(300000);
-			}
+//			if((rand.nextInt(9) + 1) % 4 == 0) {
+//				int loc = rand.nextInt(4) + 1;
+//				System.out.printf("%s 님이 ", empArr[loc].getName());
+//				((Level2)empArr[loc]).card(300000);
+//			}
 		}
 		
 	}
