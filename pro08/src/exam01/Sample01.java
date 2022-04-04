@@ -1,8 +1,8 @@
-package pro08;
+package exam01;
 
 import java.util.Arrays;
 
-public class Main {
+public class Sample01 {
 
 	public static void main(String[] args) {
 		// 문자열 생성
