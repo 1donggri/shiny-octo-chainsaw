@@ -1,6 +1,6 @@
 package exam10;
 
-public abstract class ProgrammerCalc extends Calculator implements Programmer {
+public class ProgrammerCalc extends Calculator implements Programmer {
 
 	@Override
 	public String binary(int n1) {
