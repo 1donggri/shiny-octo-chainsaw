@@ -19,7 +19,8 @@ public class LoginMenuManager {
 		StringBuilder loginMenu = new StringBuilder();
 		loginMenu.append("1. 교사용 로그인\n");	// teacherLogin()
 		loginMenu.append("2. 학생용 로그인\n");	// studentLogin()
-		loginMenu.append("3. 종료\n");		// System.exit(0);
+		loginMenu.append("3. 패스워드 초기화\n");
+		loginMenu.append("9. 종료\n");		// System.exit(0);
 		loginMenu.append(">>> ");
 		
 		while(true) {
@@ -33,6 +34,8 @@ public class LoginMenuManager {
 			} else if(input.equals("2")) {
 				studentLogin();
 			} else if(input.equals("3")) {
+				resetPass();
+			} else if(input.equals("9")) {
 				System.exit(0);
 			}
 			_clear();
@@ -114,10 +117,14 @@ public class LoginMenuManager {
 			Date now = new Date();
 			System.out.println("현재 접속 시간은 " + sFormat.format(now) + " 입니다.");
 
-			StudentMenuManager sMenu = new StudentMenuManager(loginAccount);
+			MenuManager sMenu = new MenuManager(loginAccount);
 			sMenu.main();
 		
 		}
+		
+	}
+	
+	private void resetPass() {
 		
 	}
 
