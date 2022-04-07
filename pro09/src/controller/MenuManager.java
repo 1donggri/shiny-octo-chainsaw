@@ -50,7 +50,7 @@ public class MenuManager {
 			} else if (input.equals("4")) {
 				subjectDeleteMenu();
 			} else if (input.equals("5")) {
-				modifyPassword();
+				changePasswordMenu();
 			} else if(input.equals("9")) {
 				logout();
 				return;
@@ -70,9 +70,10 @@ public class MenuManager {
 			String input = sc.nextLine();
 
 			if(input.equals("1")) {
-				searchMenu();
+				String result = _printGrades(loginAccount.getName(), ((Student)loginAccount).getGrades());
+				System.out.println(result);
 			} else if (input.equals("5")) {
-				modifyPassword();
+				changePasswordMenu();
 			} else if(input.equals("9")) {
 				logout();
 				return;
@@ -189,16 +190,16 @@ public class MenuManager {
 		}	
 	}
 	
-	public void modifyPassword() {
+	public void changePasswordMenu() {
 		while(true) {
-			System.out.print("기존 비밀번호 입력 : ");
+			System.out.print("현재 비밀번호 : ");
 			String curPass = sc.nextLine();
 			
-			System.out.print("변경할 비밀번호 입력 : ");
+			System.out.print("변경 비밀번호 : ");
 			String changePass = sc.nextLine();
 			
 			if(loginAccount.changePassword(curPass, changePass) == false) {
-				System.out.println("기존 비밀번호가 일치하지 않습니다.");
+				System.out.println("현재 비밀번호가 일치하지 않습니다.");
 			} else {
 				System.out.println("비밀번호가 변경 되었습니다.");
 				System.out.print("[[엔터키를 입력하세요]]");	sc.nextLine();	

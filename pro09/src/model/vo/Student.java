@@ -9,7 +9,6 @@ public class Student extends Account {
 	 * getter/setter 도 작성
 	 */
 	private Grade[] grades;
-	Random rand = new Random();
 	
 	public Student(String name) {
 		setName(name);
@@ -30,24 +29,11 @@ public class Student extends Account {
 	}
 
 	@Override
-	public boolean changePassword(String curPass, String changePass) {
-		if(getPassword().equals(curPass)) {
-			setPassword(changePass);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@Override
 	public String resetPassword() {
-		String newPass = "STD_";
-		for(int i = 0; i < 6; i++) {
-			char c = (char)(rand.nextInt(25) + 97);
-			newPass += c;
-		}
-		setPassword(newPass);
-		return getPassword().substring(4);
+		String prefix = "STD_";
+		String newPass = super.resetPassword();
+		setPassword(prefix + newPass);
+		return newPass;
 	}
 	
 	

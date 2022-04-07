@@ -26,5 +26,23 @@ public class TeacherDatabaseManager {
 		}
 		return t;
 	}
+	
+	private int _findIndex(String name) {
+		int idx = -1;
+		for(int i = 0; i < datas.length; i++) {
+			if(datas[i].getName().equals(name)) {
+				idx = i;
+			}
+		}
+		return idx;
+	}
+	
+	public Teacher getTeacher(String name) {
+		return datas[_findIndex(name)];
+	}
+	
+	public boolean isExisted(String name) {
+		return _findIndex(name) != -1 ? true : false;
+	}
 
 }

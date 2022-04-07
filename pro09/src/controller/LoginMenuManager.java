@@ -23,22 +23,26 @@ public class LoginMenuManager {
 		loginMenu.append("9. 종료\n");		// System.exit(0);
 		loginMenu.append(">>> ");
 		
-		while(true) {
-			System.out.println(loginMenu);
-			
-			String input = sc.nextLine();
-			
-			_clear();
-			if(input.equals("1")) {
-				teacherLogin();
-			} else if(input.equals("2")) {
-				studentLogin();
-			} else if(input.equals("3")) {
-				resetPass();
-			} else if(input.equals("9")) {
-				System.exit(0);
+		while(true){
+			int input = 0;
+			while(true) {
+				System.out.println(loginMenu);
+				
+				if(sc.hasNextInt()) {
+					input = sc.nextInt(); sc.nextLine();
+					break;
+				}
+				sc.nextLine();
+				
+				switch(input) {
+					case 1: teacherLogin(); break;
+					case 2: studentLogin();
+					case 3: resetPass();
+					case 4:
+						System.out.println("프로그램을 종료 합니다.");
+						System.exit(0);
+				}
 			}
-			_clear();
 		}
 	}
 	
@@ -125,7 +129,45 @@ public class LoginMenuManager {
 	}
 	
 	private void resetPass() {
+		System.out.println("1. 교사용 계정");
+		System.out.println("2. 학생용 계정");
+		System.out.print(">>> ");
+		String type = sc.nextLine();
 		
+		System.out.print("이름 : ");
+		String name = sc.nextLine();
+		
+		switch(type.charAt(0)) {
+			case '1':
+				if(tDB.isExisted(name) == true) {
+					teacherResetPassword(name);
+					System.out.print("[[엔터키를 입력하세요]]");	sc.nextLine();
+					break;
+				} else {
+					System.out.println("존재하지 않는 이름 입니다.");
+				}
+				
+			case '2':
+				if(sDB.isExisted(name) == true) {
+					studentResetPassword(name);
+					System.out.print("[[엔터키를 입력하세요]]");	sc.nextLine();
+					break;
+				} else {
+					System.out.println("존재하지 않는 이름 입니다.");
+				}
+		}
+	}
+	
+	private void teacherResetPassword(String name) {
+		Teacher t = tDB.getTeacher(name);
+		String password = t.resetPassword();
+		System.out.println(password + " 로 초기화 되었습니다. 변경된 비밀번호로 로그인 하세요.");
+	}
+	
+	private void studentResetPassword(String name) {
+		Student s = sDB.getStudent(name);
+		String password = s.resetPassword();
+		System.out.println(password + " 로 초기화 되었습니다. 변경된 비밀번호로 로그인 하세요.");
 	}
 
 }

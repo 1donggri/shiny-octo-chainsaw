@@ -32,24 +32,11 @@ public class Teacher extends Account {
 	}
 
 	@Override
-	public boolean changePassword(String curPass, String changePass) {
-		if(getPassword().equals(curPass)) {
-			setPassword(changePass);
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@Override
 	public String resetPassword() {
-		String newPass = "TCH_";
-		for(int i = 0; i < 6; i++) {
-			char c = (char)(rand.nextInt(25) + 97);
-			newPass += c;
-		}
-		setPassword(newPass);
-		return getPassword().substring(4);
+		String prefix = "TCH_";
+		String newPass = super.resetPassword();
+		setPassword(prefix + newPass);
+		return newPass;
 	}
 	
 	

@@ -14,9 +14,9 @@ public class DatabaseManager implements ImplDatabaseManager {
 	
 	{
 		datas = new Student[5];
-		datas[0] = new Student("홍길동", "1234");		datas[1] = new Student("김도원", "1234"); 
-		datas[2] = new Student("박수아", "1234");		datas[3] = new Student("최종희", "1234");
-		datas[4] = new Student("이정우", "1234");
+		datas[0] = new Student("홍길동");		datas[1] = new Student("김도원"); 
+		datas[2] = new Student("박수아");		datas[3] = new Student("최종희");
+		datas[4] = new Student("이정우");
 		
 		for(int i = 0; i < datas.length; i++) {
 			datas[i].setGrades(new Grade[] {
@@ -100,6 +100,14 @@ public class DatabaseManager implements ImplDatabaseManager {
 			}
 		}
 		return null;
+	}
+	
+	public Student getStudent(String name) {
+		return datas[_findIndex(name)];
+	}
+	
+	public boolean isExisted(String name) {
+		return _findIndex(name) != -1 ? true : false;
 	}
 
 }
