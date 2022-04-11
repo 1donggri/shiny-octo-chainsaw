@@ -23,25 +23,20 @@ public class LoginMenuManager {
 		loginMenu.append("9. 종료\n");		// System.exit(0);
 		loginMenu.append(">>> ");
 		
-		while(true){
-			int input = 0;
-			while(true) {
-				System.out.println(loginMenu);
-				
-				if(sc.hasNextInt()) {
-					input = sc.nextInt(); sc.nextLine();
-					break;
-				}
-				sc.nextLine();
-				
-				switch(input) {
-					case 1: teacherLogin(); break;
-					case 2: studentLogin();
-					case 3: resetPass();
-					case 4:
-						System.out.println("프로그램을 종료 합니다.");
-						System.exit(0);
-				}
+		while(true) {
+			System.out.print(loginMenu);
+			
+			String input = sc.nextLine();
+			
+			if(input.equals("1")) {
+				teacherLogin();
+			} else if(input.equals("2")) {
+				studentLogin();
+			} else if(input.equals("3")) {
+				resetPass();
+			} else if(input.equals("9")) {
+				System.out.println("프로그램을 종료 합니다.");
+				System.exit(0);
 			}
 		}
 	}

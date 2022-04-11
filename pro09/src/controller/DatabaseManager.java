@@ -2,6 +2,7 @@ package controller;
 
 import java.util.Arrays;
 
+import exception.GradeScoreException;
 import model.vo.Grade;
 import model.vo.Student;
 import model.vo.Teacher;
@@ -52,11 +53,14 @@ public class DatabaseManager implements ImplDatabaseManager {
 	@Override
 	public Student modify(String name, String subject, int score) {
 		int idx = _findIndex(name);
-		
 		Grade[] grades = datas[idx].getGrades();
 		for(int i = 0; i < grades.length; i++) {
 			if(grades[i].getName().equals(subject)) {
-				grades[i].setScore(score);
+				if(score >= 0 && score <= 100) {
+					grades[i].setScore(score);
+				} else {
+					grades[i].setScore(0);
+				}
 				return datas[idx];
 			}
 		}

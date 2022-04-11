@@ -2,6 +2,8 @@ package model.vo;
 
 import java.util.Random;
 
+import exception.PasswordUnvalidException;
+
 public abstract class Account {
 	private String name;
 	private String password;
@@ -19,6 +21,12 @@ public abstract class Account {
 	}
 	
 	public void setPassword(String password) {
+		if(!(password.matches("[0-9a-zA-Z]{4, 12}")
+				&& !password.matches("[0-9]{4, 12}")
+				&& !password.matches("[a-zA-Z]{4, 12}"))) {
+			throw new PasswordUnvalidException("패스워드는 숫자/영문자 조합으로 만들어야 합니다.");
+		}
+		
 		this.password = password;
 	}
 	
