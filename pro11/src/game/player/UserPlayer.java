@@ -6,6 +6,7 @@ import game.card.Bawi;
 import game.card.Bo;
 import game.card.Gawi;
 import game.card.Hand;
+import game.db.Database;
 import game.record.Record;
 
 public class UserPlayer implements Player {
@@ -13,6 +14,7 @@ public class UserPlayer implements Player {
 	Random rand = new Random();
 	private Hand hand;
 	private Record rec = new Record();
+	private int[] RecordArray;
 
 	@Override
 	public void randomCardHand() {
@@ -25,6 +27,14 @@ public class UserPlayer implements Player {
 		} else if(num == 2) {
 			hand = new Bo();
 		}
+	}
+
+	public int[] getRecordArray() {
+		return RecordArray;
+	}
+
+	public void setRecordArray(int[] recordArray) {
+		RecordArray = recordArray;
 	}
 
 	@Override
