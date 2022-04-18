@@ -55,7 +55,7 @@ public class Sample01 {
 		s1 = s1.substring(2);
 		System.out.println(s1);
 		
-		s1 = s1.substring(3, 6);
+		s1 = s1.substring(3, 5);
 		System.out.println(s1);
 		
 		s1 = "영문자 upper/lower";

@@ -30,6 +30,8 @@ public class Sample05 {
 		// 기본자료형을 문자열 변경(Wrapper 사용)
 		String s3 = Integer.valueOf(10).toString();
 		s3 = Boolean.valueOf(true).toString();
+		
+		System.out.println(s3);
 	
 
 	}
