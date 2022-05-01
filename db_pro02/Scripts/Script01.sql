@@ -155,12 +155,12 @@ ALTER TABLE MY_TEST ADD UNIQUE(name);
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'MY_TEST';
 
 
--- 외래키 추가 1 : 컬럼 레벨로 컬럼 수정하면서 추가
+-- 참조 추가 1 : 컬럼 레벨로 컬럼 수정하면서 추가
 ALTER TABLE MY_TEST MODIFY ref_col REFERENCES MY_TEST_REF(ref_id);
 -- 확인 구문
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'MY_TEST';
 
--- 외래키 추가 2 : 테이블 레벨로 추가
+-- 참조 추가 2 : 테이블 레벨로 추가
 ALTER TABLE MY_TEST ADD FOREIGN KEY(ref_col) REFERENCES MY_TEST_REF(ref_id);
 -- 확인 구문
 SELECT * FROM USER_CONSTRAINTS WHERE TABLE_NAME = 'MY_TEST';
