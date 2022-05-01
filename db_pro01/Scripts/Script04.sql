@@ -95,7 +95,7 @@ SELECT FLOOR(10.34)
 	FROM DUAL;
 	
 
--- 버림
+-- 버림 (절사)
 SELECT TRUNC(10.34, 1)
 	,  TRUNC(10.36, 1)
 	,  TRUNC(10.3456, 2)
