@@ -17,7 +17,7 @@ public class TCPServer {
 			/*
 			 * 1. 서버용 소켓 생성
 			 */
-			ServerSocket sSock = new ServerSocket();
+			ServerSocket sSock = new ServerSocket(8000);
 			
 			/*
 			 * 2. 생성한 소켓에 서버IP 주소, 서버 Port 번호 바인딩(연결)	--> 중요
