@@ -26,8 +26,6 @@ SELECT * FROM LOCATIONS;
 -- 대륙 정보 테이블
 SELECT * FROM REGIONS;
 
-
-
 -- 컬럼명에 별칭 부여
 SELECT EMPLOYEE_ID AS "사번"
 	 , FIRST_NAME "이름"
