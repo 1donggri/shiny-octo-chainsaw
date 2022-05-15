@@ -13,7 +13,7 @@ public class JoinVO {
 	private String username;	// 사용자의 실제 이름	20 Byte
 	private char gender;		// M: 남자, F: 여자	1  Byte
 	private int age;			// 나이
-	private Date createDate;		// 회원가입일
+	private Date createDate;	// 회원가입일
 
 	
 	public String getUserID() {
