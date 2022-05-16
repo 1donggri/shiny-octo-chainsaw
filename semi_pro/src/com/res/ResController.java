@@ -1,5 +1,7 @@
 package com.res;
 
+import java.util.ArrayList;
+
 import com.join.JoinDAO;
 
 public class ResController {
@@ -16,6 +18,36 @@ public class ResController {
 		
 		boolean result = dao.register(data);
 		return result;
+	}
+	
+	public ResVO search(String resname, String location) {
+		// 수정 또는 삭제 전 검색 제어
+		return dao.get(resname, location);
+	}
+	
+	public ArrayList locationLank(String location) {
+		// 지역별 랭킹 조회
+		return dao.locationLank(location);
+	}
+	
+	public ArrayList typeLank(String type) {
+		// 카테고리별 랭킹 조회
+		return dao.typeLank(type);
+	}
+	
+	public ArrayList resList(String type, String location) {
+		// 조건별 맛집 리스트 검색
+		return dao.resList(type, location);
+	}
+	
+	public boolean update(ResVO data) {
+		// 맛집 정보 수정
+		return dao.update(data);
+	}
+	
+	public boolean delete(ResVO data) {
+		// 맛집 정보 삭제
+		return dao.delete(data);
 	}
 
 }

@@ -1,5 +1,6 @@
 package com;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.join.JoinController;
@@ -102,15 +103,103 @@ public class View {
 				case "3":
 					// 맛집 수정
 					// 좋아요 수는 수정 x
-					System.out.println("개발중..");
+					
+					// 사용자가 지역을 검색하면 해당 지역의 맛집 리스트 보여주기
+					System.out.print("조회할 지역 입력 : ");
+					String location = sc.nextLine();
+					locationLank(location);
+					// 입력받은 지역과 맛집 이름으로 맛집 조회 
+					System.out.print("조회할 맛집 이름 입력 : ");
+					String resname = sc.nextLine();
+					ResVO res = rc.search(resname, location);
+					
+					if(res == null) {
+						System.out.println(location + " 지역에 해당 맛집이 존재하지 않습니다.");
+					}
+					// 수정 전 맛집 정보 보여주기
+					System.out.println(resname + " 에 대한 맛집 정보를 변경합니다.");
+					System.out.println("맛집 이름 : " + res.getRes_name());
+					System.out.println("맛집 타입 : " + res.getRes_type());
+					System.out.println("맛집 위치 : " + res.getLocation());
+					System.out.print("\n");
+					
+					// 수정
+					System.out.println("아무것도 입력 하지 않으면 이전 값을 유지 합니다.");
+					System.out.println("변경할 맛집 이름을 입력하세요.");
+					System.out.print(">>> ");
+					input = sc.nextLine();
+					input = input.isEmpty() ? res.getRes_name() : input;
+					res.setRes_name(input);
+					
+					System.out.println("변경할 맛집 타입을 입력하세요. (한식, 일식, 중식, 양식)");
+					System.out.print(">>> ");
+					input = sc.nextLine();
+					input = input.isEmpty() ? res.getRes_type() : input;
+					res.setRes_type(input);
+					
+					System.out.println("변경할 맛집 위치(지역)를 입력하세요.");
+					System.out.print(">>> ");
+					input = sc.nextLine();
+					input = input.isEmpty() ? res.getLocation() : input;
+					res.setLocation(input);
+					
+					result = rc.update(res);
+					
+					if(result == true) {
+						System.out.println("수정이 완료되었습니다.");
+						System.out.println("맛집 이름 : " + res.getRes_name());
+						System.out.println("맛집 타입 : " + res.getRes_type());
+						System.out.println("맛집 위치 : " + res.getLocation());
+					} else {
+						System.out.println("수정에 실패하였습니다.");
+					}
+					
 					break;
 				case "4":
 					// 맛집 삭제
-					System.out.println("개발중..");
+					// 사용자가 지역을 검색하면 해당 지역의 맛집 리스트 보여주기
+					System.out.print("조회할 지역 입력 : ");
+					location = sc.nextLine();
+					locationLank(location);
+					System.out.print("삭제할 맛집 이름 입력 : ");
+					resname = sc.nextLine();
+					res = rc.search(resname, location);
+					
+					if(res == null) {
+						System.out.println(location + " 지역에 해당 맛집이 존재하지 않습니다.");
+					}
+					System.out.println(resname + " 에 대한 맛집 정보를 삭제합니다.");
+					
+					if(rc.delete(res) == true) {
+						System.out.println("삭제 되었습니다.");
+					} else {
+						System.out.println("삭제 처리를 수행할 수 없습니다.");
+					}
 					break;
 				case "5":
 					// 좋아요 누르기
-					System.out.println("개발중..");
+					// 사용자가 지역을 검색하면 해당 지역의 맛집 리스트 보여주기
+					System.out.print("조회할 지역 입력 : ");
+					location = sc.nextLine();
+					locationLank(location);
+					System.out.print("좋아요 누를 맛집 이름 입력 : ");
+					resname = sc.nextLine();
+					res = rc.search(resname, location);
+					
+					if(res == null) {
+						System.out.println(location + " 지역에 해당 맛집이 존재하지 않습니다.");
+					}
+					
+					res.setRes_likes(res.getRes_likes() + 1);
+					result = rc.update(res);
+					
+					if(result == true) {
+						System.out.println(resname + " 에 좋아요 를 눌렀습니다.");
+						System.out.println(resname + " 의 좋아요 개수는 현재 " + res.getRes_likes() + " 개 입니다.");
+					} else {
+						System.out.println("좋아요 누르기 에 실패하였습니다.");
+					}
+					
 					break;
 				case "6":
 					// 로그아웃
@@ -133,16 +222,87 @@ public class View {
 			switch(input) {
 				case "1":
 					// 지역별 랭킹
-					System.out.println("개발중..");
+					System.out.print("조회할 지역 입력 : ");
+					String location = sc.nextLine();
+					this.locationLank(location);
+					break;
 				case "2":
 					// 카테고리별 랭킹
-					System.out.println("개발중..");
+					System.out.print("조회할 카테고리 입력 (한식, 일식, 중식, 양식) : ");
+					String type = sc.nextLine();
+					this.typeLank(type);
+					break;
 				case "3":
 					// 조건별 검색
-					System.out.println("개발중..");
+					System.out.print("조회할 지역 입력 : ");
+					location = sc.nextLine();
+					System.out.print("조회할 카테고리 입력 (한식, 일식, 중식, 양식) : ");
+					type = sc.nextLine();
+					this.resList(type, location);
+					break;
 				default:
 					System.out.println("잘못된 메뉴 번호 입니다. 다시 입력하세요.");
 			}
+		}
+	}
+	
+	public void locationLank(String location) {
+		
+		ArrayList<ResVO> res = rc.locationLank(location);
+		
+		if(res == null) {
+			System.out.println("해당 지역에 맛집이 존재하지 않습니다.");
+		} else {
+			System.out.print("\n");
+			System.out.println("이름	|	타입	|	지역	|	좋아요");
+			System.out.println("-------------------------------------------------------");
+			for(ResVO r : res) {
+				System.out.println(r.getRes_name() + "	|	"
+								 + r.getRes_type() + "	|	"
+								 + r.getLocation() + "	|	"
+								 + r.getRes_likes());
+			}
+			System.out.print("\n");
+		}
+	}
+	
+	public void typeLank(String type) {
+		
+		ArrayList<ResVO> res = rc.typeLank(type);
+		
+		if(res == null) {
+			System.out.println("해당 타입에 맛집이 존재하지 않습니다.");
+		} else {
+			System.out.print("\n");
+			System.out.println("이름	|	타입	|	지역	|	좋아요");
+			System.out.println("-------------------------------------------------------");
+			for(ResVO r : res) {
+				System.out.println(r.getRes_name() + "	|	"
+								 + r.getRes_type() + "	|	"
+								 + r.getLocation() + "	|	"
+								 + r.getRes_likes());
+			}
+			System.out.print("\n");
+		}
+	}
+	
+	public void resList(String type, String location) {
+		
+		ArrayList<ResVO> res = rc.resList(type, location);
+		
+		if(res == null) {
+			System.out.println("해당 조건에 부합하는 맛집이 존재하지 않습니다.");
+		} else {
+			System.out.print("\n");
+			System.out.println("이름	|	타입	|	지역	|	좋아요");
+			System.out.println("-------------------------------------------------------");
+			for(ResVO r : res) {
+				System.out.println(r.getRes_name() + "	|	"
+								 + r.getRes_type() + "	|	"
+								 + r.getLocation() + "	|	"
+								 + r.getRes_likes());
+			}
+			System.out.print("\n");
 		}
 	}
 
