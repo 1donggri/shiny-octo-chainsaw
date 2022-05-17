@@ -1,0 +1,32 @@
+-- 계정 생성
+CREATE USER semi1 IDENTIFIED BY semi1;
+
+-- 권한 부여
+GRANT RESOURCE, CONNECT TO semi1;
+GRANT INSERT ANY TABLE, UPDATE ANY TABLE
+	, DELETE ANY TABLE, CREATE VIEW
+	TO semi1;
+
+-- 테이블스페이스 사용 권한 부여
+ALTER USER semi1 quota 10M ON USERS;
+COMMIT;
+
+-- 테이블 생성
+CREATE TABLE ACCOUNT_T (
+	   userid		VARCHAR2(20)
+	 , userpw		VARCHAR2(20)
+	 , username		VARCHAR2(20)
+	 , createDate	DATE
+);
+
+CREATE TABLE RESTAURANT_T (
+	   res_name		VARCHAR2(50)
+	 , res_type		VARCHAR2(20)
+	 , location		VARCHAR2(20)
+	 , res_likes	NUMBER
+);
+
+SELECT * FROM ACCOUNT_T;
+SELECT * FROM RESTAURANT_T;
+
+COMMIT;
