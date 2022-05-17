@@ -1,14 +1,41 @@
-package com.res;
+package com;
 
 import java.util.ArrayList;
 
-import com.join.JoinDAO;
+/*
+ * 중간 제어용 객체
+ */
 
-public class ResController {
+public class Controller {
 	
-	private ResDAO dao = new ResDAO();
+	private DAO dao = new DAO();
+	
+	public boolean join(JoinVO data) {
+		// 회원가입 제어
+		// 중복된 아이디가 없어야 함
+		JoinVO account = dao.get(data.getUserID());
+		
+		if(account != null) {
+			return false;
+		}
+		
+		boolean result = dao.register(data);
+		return result;
+	}
+	
+	public JoinVO login(String userid, String userpw) {
+		// 로그인 제어
+		JoinVO data = dao.get(userid);
+		
+		if(data.getUserPW().equals(userpw)) {
+			return data;
+		}
+		
+		return null;
+	}
 	
 	public boolean join(ResVO data) {
+		// 맛집 등록 제어
 		// 같은 지역 내에 동일한 이름의 맛집이 등록되어 있다면 등록하지 못하게 함
 		ResVO res = dao.get(data.getRes_name(), data.getLocation());
 		
@@ -21,7 +48,7 @@ public class ResController {
 	}
 	
 	public ResVO search(String resname, String location) {
-		// 수정 또는 삭제 전 검색 제어
+		// 맛집 수정 또는 삭제 전 검색 제어
 		return dao.get(resname, location);
 	}
 	

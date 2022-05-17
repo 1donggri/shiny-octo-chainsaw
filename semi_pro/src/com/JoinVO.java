@@ -1,10 +1,10 @@
-package com.join;
+package com;
 
 import java.sql.Date;
 
 /*
  * 사용자 정보를 담고 있는 객체
- * 멤버 변수에 대한 getter/setter 필요
+ * 멤버 변수에 대한 getter/setter
  */
 
 public class JoinVO {
