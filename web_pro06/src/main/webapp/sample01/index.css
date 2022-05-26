@@ -1,0 +1,128 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Serif+KR&display=swap');
+
+* {
+	font-family: 'Gowun Dodum', sans-serif;
+}
+
+.p1 > p {
+	font-size: 16px
+}
+
+.p2 > p {
+	font-size: 2em;
+}
+
+.p3 > p {
+	font-size: 2em;
+}
+
+.p4 > p {
+	font-size: 8px;
+}
+
+.p5 > p {
+	font-size: 2rem;
+}
+
+.p6 > p {
+	font-size: 2rem;
+}
+
+.test1 > .ex1 {
+	font-variant: normal;
+}
+
+.test1 > .ex2 {
+	font-variant: small-caps;
+}
+
+.test2 {
+	font-family: "맑은 고딕";
+}
+
+.test2 > .ex1 {
+	font-style: normal;
+}
+
+.test2 > .ex2 {
+	font-style: italic;
+}
+
+.test2 > .ex3 {
+	font-style: oblique;
+}
+
+.test3 {
+	font: italic small-caps bold 24px/48px "D2Cording";
+}
+
+.test4 {
+	/* color: rgba(255, 0, 0, 0.1); */
+	color: #FF000080;
+}
+
+.test5 > .ex1 {
+	text-decoration: underline;
+}
+
+.test5 > .ex2 {
+	text-decoration: overline;
+}
+
+.test5 > .ex3 {
+	text-decoration: line-through;
+}
+
+.test5 > .ex4 a {
+	text-decoration: none;
+}
+
+.test6 > .ex1 {
+	text-transform: capitalize;		/* 앞글자만 대문자 */
+}
+
+.test6 > .ex2 {
+	text-transform: uppercase;		/* 대문자 */
+}
+
+.test6 > .ex3 {
+	text-transform: lowercase;		/* 소문자 */
+}
+
+.test7 > .ex1 {
+	text-shadow: 2px 2px 4px red;	/* 그림자 */
+}
+
+.test8 > .ex1 {
+	white-space: pre;				/* 공백 */
+}
+
+.test9 > .ex1 {
+	letter-spacing: 25px;
+}
+
+.test9 > .ex2 {
+	word-spacing: 24px;
+}
+
+.test10 > .ex1 {
+	/* direction: rtl; */
+	width: 50%;
+	text-align: left;
+	text-indent: 48px;
+	line-height: 24px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;		/* 위 두개의 속성과 같이 써야함 */
+}
+
+.test11 > ul {
+	/*
+	list-style-type: none;
+	list-style-position: inside;
+	*/
+	list-style: none inside url(./icon.png);
+	padding-inline-start: 80px;
+}
+
