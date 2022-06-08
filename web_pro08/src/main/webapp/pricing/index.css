@@ -1,0 +1,198 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300&display=swap');
+
+* {
+	font-family: 'Heebo', sans-serif;
+}
+
+body {
+	background-color: white;
+}
+
+/*
+ * 헤더
+ */
+
+nav {
+	border-bottom: 1px solid #D8D8D8;
+}
+
+.title {
+	margin-left: 1%;
+	color: black;
+	font-size: 1.2em;
+	text-decoration: none;
+}
+
+.top-menu {
+	list-style-type: none;
+	display: inline-block;
+	padding-left: 58%;
+	padding-right: 0;
+}
+
+.top-menu li, a {
+	display: inline-block;
+}
+
+.menu-link {
+	text-decoration: none;
+	color: black;
+	padding: 0.5em 1em;
+}
+
+.menu-link:hover {
+	text-decoration: underline;
+}
+
+.top-menu .btn {
+	width: 100%;
+	margin: 0 10% 0 10%;
+ 	border: 1px solid #007BFF;
+ 	font-size: 1em;
+ 	padding: 0.6em;
+ 	border-radius: 3px;
+}
+
+/*
+ * 메인
+ */
+
+section {
+	width: 1000px;
+	display: block;
+	margin: 0 auto;
+}
+
+.main1 {
+	width: 70%;
+	margin: 0 auto;
+}
+
+.main2 {
+	width: 100%;
+	padding: 0 0 0 1%;
+}
+
+.box {
+	width: 30%;
+	height: 340px;
+	display: inline-block;
+	text-align: center;
+	margin: 0.1% 1.2% 5% 1.2%;
+	border: 1px solid #D8D8D8;
+	border-radius: 5px;
+}
+
+th {
+	text-align: center;
+	width: 280px;
+	background-color: #F7F7F7;
+	border-bottom: 1px solid #D8D8D8;
+	padding: 3%;
+	font-size: 22px;
+}
+
+td {
+	text-align: center;
+	width: 380px;
+}
+
+.btn {
+	width: 80%;
+	margin: 5% 10% 5% 10%;
+ 	border: 1px solid #007BFF;
+ 	font-size: 1.2em;
+ 	padding: 0.5em;
+ 	border-radius: 3px;
+}
+
+.white {
+	background-color: white;
+ 	color: #007BFF;
+}
+
+.white:hover {
+	background-color: #007BFF;
+ 	color: white;
+}
+
+.blue {
+	background-color: #007BFF;
+ 	color: white;
+}
+
+.blue:hover {
+	background-color: #0063CC;
+ 	color: white;
+}
+
+.p1 {
+	width: 20%;
+	margin: 0.8em auto 0 auto;
+	padding: 0 40% 0 40%;
+	font-size: 3.5em;
+}
+
+.p2 {
+	width: 90%;
+	margin: 0.1em auto 2em auto;
+	font-size: 1.1em;
+	color: gray;
+	text-align: center;
+}
+
+.p3 {
+	margin: 2% auto;
+	padding: 0.1% 0 0.1% 0;
+}
+
+.daller {
+	display: inline-block;
+	font-size: 40px;
+	margin: 5% auto 1% auto;
+}
+
+.mo {
+	display: inline-block;
+	font-size: 28px;
+	margin: 5% auto 1% auto;
+	color: gray;
+}
+
+footer {
+	display: block;
+	width: 950px;
+	margin: 1% auto 0 auto;
+	border-top: 1px solid #D8D8D8;
+}
+
+.foot1 {
+	width: 24%;
+	font-size: 1em;
+	margin: 2em auto 5em auto;
+	display: inline-block;
+}
+
+footer a, .date {
+	color: gray;
+	text-decoration: none;
+	margin-top: 0;
+}
+
+small {
+	font-size: 12px;
+}
+
+footer p {
+	margin-bottom: 2%;
+	font-size: 1.2em;
+}
+
+footer a:hover {
+	text-decoration: underline;
+}
+
+.logo {
+	width: 10%;
+}

@@ -1,0 +1,111 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Serif+KR&display=swap');
+
+* {
+	font-family: 'Gowun Dodum', sans-serif;
+	background-color: #333333;
+}
+
+/*
+ * 헤더
+ */
+header img.logo {
+	background-color: #333333;
+	width: 270px;
+}
+
+header a {
+	display: block;
+	padding-top: 1em;
+	padding-bottom: 2em;
+	width: 270px;
+	margin: 0 auto;
+}
+
+/*
+ * 메뉴
+ */
+nav ul.top-menu {
+	list-style-type: none;
+	width: 168.5px;
+	margin: 0 auto;
+	padding-left: 27em;
+}
+
+ul.top-menu li, a {
+	display: inline-block;
+}
+
+ul.top-menu a.join-link {
+	display: block;
+	text-decoration: none;
+	background-color: white;
+	color: #333333;
+	font-weight: bold;
+	padding: 0.5em 1em;
+}
+
+ul.top-menu a.login-link {
+	display: block;
+	text-decoration: none;
+	color: white;
+	font-weight: bold;
+	padding: 0.5em 1em;
+}
+
+/* 메뉴에 커서를 둘 때 나타나는 액션 */
+ul.top-menu a.login-link:hover {
+	background-color: white;
+	color: #333333;
+}
+
+ul.top-menu a.login-link:hover {
+	background-color: white;
+	color: #333333;
+}
+
+ul.top-menu .active {
+	background-color: gray;
+	color: black;
+}
+
+/*
+ * 로그인 창
+ */
+
+form div.posting {
+	background-color: white;
+	width: 600px;
+	margin: 0 auto;
+	padding-top: 3em;
+	padding-bottom: 2.5em;
+}
+
+.form-label {
+ 	background-color: white;
+ 	font-size: 1em;
+ 	display: block;
+ 	padding-left: 9em;
+}
+ 
+.form-input {
+ 	background-color: white;
+ 	display: block;
+ 	width: 300px;
+ 	padding: 1em;
+ 	margin-left: 10em;
+ 	margin-bottom: 1em;
+}
+
+.btn {
+	font-size: 1.5em;
+	border-style: none;
+	padding: 0.3em;
+	display: block;
+	position: relative;
+	width: 400px;
+ 	background-color: black;
+ 	color: white;
+ 	border-radius: 4px;
+ 	margin-left: 4em;
+}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>네이버 : 회원가입</title>
+	<link rel="stylesheet" type="text/css" href="./index.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+	<div>
+		<header>
+			<a href="#"><img class="logo" alt="logo" src="Naver.png"></a>
+		</header>
+		<form action="./run.jsp" method="POST">
+			<div class="join">
+				<br>
+				<label class="form-label"><b>아이디</b></label>
+				<input class="form-input" type="text" placeholder="			  	   							@naver.com">
+				<br>
+				<label class="form-label"><b>비밀번호</b></label>
+				<div class="form-input-icon">
+					<input class="form-input" type="password">
+					<span class="material-icons-outlined">lock</span>
+				</div>
+				<br>
+				<label class="form-label"><b>비밀번호 재확인</label>
+				<input class="form-input" type="password">
+			</div>
+			<div class="join">
+				<br>
+				<label class="form-label">이름</label>
+				<input class="form-input" type="text">
+				<br>
+				<label class="form-label">생년월일</label><br>
+				<input class="form-birth-input" type="text" placeholder="년">
+				<select class="form-birth-select">
+					<option>월</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
+				</select>
+				<input class="form-birth-input" type="text" placeholder="일">
+				<br><br>
+				<label class="form-label">성별</label>
+				<select class="form-select">
+					<option>성별</option>
+					<option value="m">남자</option>
+					<option value="f">여자</option>
+					<option value="n">선택안함</option>
+				</select>
+				<br>
+				<label class="form-label">본인 확인 이메일 <small>(선택)</small></label>
+				<input class="form-input" type="email" placeholder="선택입력">
+			</div>
+			<div class="join">
+				<br>
+				<label class="form-label">휴대전화</label>
+				<select class="form-select" required>
+					<option value="+30">그리스 +30</option>
+					<option value="+234">나이지리아 +234</option>
+					<option value="+31">네덜란드 +31</option>
+					<option value="+82" selected>대한민국 +82</option>
+				</select>
+				<input class="form-number-input" type="text" placeholder="전화번호 입력">
+				<button class="form-number-button">인증번호 받기</button>
+				<input class="form-input" placeholder="인증번호 입력하세요" disabled>
+			</div>
+			<div class="join">
+				<button class="btn" type="button">가입하기</button>
+				<br>
+			</div>
+		</form>
+		<footer>
+			<div class="foot1">
+				<a href="#">이용약관</a> | 
+				<a href="#">개인정보처리방침</a> | 
+				<a href="#">책임의 한계와 법적고지</a> | 
+				<a href="#">회원정보 고객센터</a>
+			</div>
+			<div class="foot2">
+				<a href="#">© NAVER Corp.</a>
+			</div>
+		</footer>
+	</div>	
+</body>
+</html>

@@ -1,0 +1,68 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Serif+KR&display=swap');
+
+* {
+	font-family: 'Gowun Dodum', sans-serif;
+}
+
+form {
+	width: 360px;		/* 반드시 너비를 고정시켜야 함 */
+	margin: 0 auto;
+}
+
+form * {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	display: inline-block;
+}
+
+.form-control {
+	margin: 0.4em 0;
+	width: 100%;
+}
+
+.form-control .form-label {
+	width: 100%;
+	color: gray;
+	font-size: 0.8em;
+	margin-bottom: 0.2em;
+}
+
+.form-control .form-input {
+	width: 100%;
+	border-style: none;
+	outline-style: none;
+	padding: 0.4em 0.2em;
+	border-radius: 4px;		/* 버튼 모양 둥글게 */
+}
+
+.form-input:focus {
+	/* outline-color: skyblue; */
+	box-shadow: 0 0 3px 1px skyblue;
+}
+
+button {
+	background-color: #EFEFEF;
+	border-style: none;
+	padding: 1em;
+}
+
+.btn {
+	position: relative;
+	width: 100%;
+	background-color: skyblue;
+	border-radius: 4px;		/* 버튼 모양 둥글게 */
+}
+
+/* 커서 둘 때 */
+.btn:hover {
+	background-color: #7BD3F7;
+	cursor: pointer;
+}
+
+/* 버튼 눌렀을 때 */
+.btn:active {
+	top: 0.5px;
+	left: 1px;
+}

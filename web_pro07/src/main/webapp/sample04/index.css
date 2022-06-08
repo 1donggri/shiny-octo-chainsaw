@@ -1,0 +1,145 @@
+@charset "UTF-8";
+
+.flex-layout {
+	display: flex;
+	flex-wrap: wrap;	/* 기본 크기 유지, 화면이 많이 줄어들면 밑으로 내려감 */
+}
+
+@media screen and (max-width: 1024px) {
+	.flex-layout {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+section {
+	height: 360px;
+	background-color: #E8F6F3;
+}
+
+aside {
+	height: 360px;
+	background-color: #F4ECF7;
+}
+
+footer {
+	height: 120px;
+	background-color: #FBEEE6;
+}
+
+.b840 {
+	flex-basis: 840px;
+}
+
+.b480 {
+	flex-basis: 480px;
+}
+
+.b360 {
+	flex-basis: 360px;
+}
+
+.w12 {
+	flex-grow: 12;
+}
+
+.w11 {
+	flex-grow: 11;
+}
+
+.w10 {
+	flex-grow: 10;
+}
+
+.w9 {
+	flex-grow: 9;
+}
+
+.w8 {
+	flex-grow: 8;
+}
+
+.w7 {
+	flex-grow: 7;
+}
+
+.w6 {
+	flex-grow: 6;
+}
+
+.w5 {
+	flex-grow: 5;
+}
+
+.w4 {
+	flex-grow: 4;
+}
+
+.w3 {
+	flex-grow: 3;
+}
+
+.w2 {
+	flex-grow: 2;
+}
+
+.w1 {
+	flex-grow: 1;
+}
+
+
+* {
+	margin: 0;	padding: 0;
+	box-sizing: border-box;
+}
+
+.flex-menu .menu {
+	display: flex;
+}
+
+.flex-menu .menu-item {
+	flex-grow: 1;
+}
+
+@media screen and (max-width: 500px) {
+	.flex-menu .menu {
+		flex-wrap: wrap;
+		
+	}
+	
+	.flex-menu .menu-item {
+		flex-basis: 480px;
+	}
+}
+
+ul.menu {
+	list-style-type: none;
+	padding: 0;
+}
+
+.menu .menu-item {
+	text-align: center;
+	width: 120px;
+}
+
+.menu-link {
+	display: inline-block;
+	text-decoration: none;
+	padding: 1rem 2rem;
+	width: 100%
+}
+
+.bg-red {
+	background-color: red;
+}
+
+.bg-red :hover {
+	background-color: darkred;
+}
+
+.fg-white * {
+	color: white;
+}
+
+
+
