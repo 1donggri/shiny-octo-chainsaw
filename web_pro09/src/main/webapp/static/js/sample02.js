@@ -29,3 +29,31 @@ function f5(x) {
 function f6(x, y=0) {
 	console.log("매개변수 x, y 의 값 -> ", x, ", ", y);
 }
+
+function f7(x, ...args) {
+	console.log("매개변수 x -> " + x);
+	for(let arg of args) {
+		console.log("매개변수 args -> " + arg);
+	}
+}
+
+function f8(x, y=0, ...args) {
+	console.log("매개변수 x, y 값 -> " + x + ", " + y);
+	for(let arg of args) {
+		console.log("매개변수 args 값 -> " + arg);
+	}
+}
+
+function f9(x) {
+	console.log(arguments);
+	for(let v of arguments) {
+		console.log(v);
+	}
+}
+
+/* var f10 = (x) => {
+	return x + 10;
+};
+*/
+
+var f10 = (x) => x + 10;

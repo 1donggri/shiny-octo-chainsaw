@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="testMapper">
+	<resultMap type="empVo" id="empVoMap">
+		<result column="employee_id" property="empId" />
+		<result column="first_name" property="fName" />
+		<result column="last_name" property="lName" />
+	</resultMap>
+
+  	<select id="test1" resultType="_int">
+		SELECT 1234 FROM DUAL
+	</select>
+	
+	<select id="test2" resultType="string">
+		SELECT 'Mybatis Connect' FROM DUAL
+	</select>
+	
+	<select id="test3" resultType="map">
+		SELECT EMPLOYEE_ID, FIRST_NAME, LAST_NAME FROM EMPLOYEES
+	</select>
+	
+	<!-- mybatis-config.xml 파일에 TypeAliases 를 설정하여 com.data.vo.EmpVO 대신 empVo 로 사용 -->
+	<!-- <select id="test4" resultType="com.data.vo.EmpVO"> -->
+	<select id="test4" resultType="empVo">
+		SELECT EMPLOYEE_ID AS empid
+		     , FIRST_NAME AS fname
+		     , LAST_NAME AS lname
+		  FROM EMPLOYEES
+	</select>
+	
+	<!-- resultMap 과 resultType 둘 중 하나만 사용 (위에 있음) -->
+	<select id="test5" resultMap="empVoMap">
+		SELECT EMPLOYEE_ID
+		     , FIRST_NAME
+		     , LAST_NAME
+		  FROM EMPLOYEES
+	</select>
+	
+	<select id="test6" resultMap="empVoMap">
+		SELECT EMPLOYEE_ID
+		     , FIRST_NAME
+		     , LAST_NAME
+		  FROM EMPLOYEES
+		 WHERE EMPLOYEE_ID = #{id}
+	</select>
+	
+	<select id="test7" parameterType="string" resultMap="empVoMap">
+		SELECT EMPLOYEE_ID
+		     , FIRST_NAME
+		     , LAST_NAME
+		  FROM EMPLOYEES
+		 WHERE FIRST_NAME = #{id}
+	</select>
+	
+	
+	<!-- first_name 에 #{id} 이 포함되어 있는 데이터 조회 (양쪽에 % 기호 넣어야 함) -->
+	<select id="test8" parameterType="string" resultMap="empVoMap">
+		SELECT EMPLOYEE_ID
+		     , FIRST_NAME
+		     , LAST_NAME
+		  FROM EMPLOYEES
+		 WHERE FIRST_NAME LIKE '%' || #{id} || '%'
+	</select>
+	
+	<select id="test9" parameterType="map" resultMap="empVoMap">
+		SELECT EMPLOYEE_ID
+		     , FIRST_NAME
+		     , LAST_NAME
+		  FROM EMPLOYEES
+		 WHERE EMPLOYEE_ID BETWEEN #{start} AND #{end}
+	</select>
+	
+	<select id="test10" parameterType="empVo" resultMap="empVoMap">
+		SELECT EMPLOYEE_ID
+		     , FIRST_NAME
+		     , LAST_NAME
+		  FROM EMPLOYEES
+		 WHERE EMPLOYEE_ID = #{empId}
+	</select>
+	
+	<!-- 데이터 추가 : insert -->
+	
+	<insert id="test11" parameterType="testVo">
+		INSERT INTO T_MYBATIS VALUES (SEQ_MYBATIS.NEXTVAL, #{name}, #{today})
+	</insert>
+	
+	<update id="test12" parameterType="map">
+		UPDATE T_MYBATIS
+		   SET NAME = #{name}
+		 WHERE ID = #{id}
+	</update>
+	
+	<update id="test13" parameterType="testVo">
+		UPDATE T_MYBATIS
+		   SET NAME = #{name}
+		 WHERE ID = #{id}
+	</update>
+	
+	<delete id="test14" parameterType="_int">
+		DELETE FROM T_MYBATIS
+		 WHERE ID = #{id}
+	</delete>
+	
+	<select id="test15" resultType="testVo">
+		SELECT ID
+		     , NAME
+		     , TODAY
+		  FROM T_MYBATIS
+		 WHERE ID = #{id}
+	</select>
+	
+	<select id="test16" parameterType="empSelectVo" resultType="empVo">
+		SELECT EMPLOYEE_ID
+		     , FIRST_NAME
+		     , LAST_NAME
+		     , HIRE_DATE
+		     , SALARY
+		  FROM EMPLOYEES
+		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="salary != 0">
+				AND SALARY >= #{salary}
+			</if>
+			<choose>
+				<when test="deptId != 0">
+					AND DEPARTMENT_ID = #{deptId}
+				</when>
+				<when test="deptIdList != null">
+					<foreach collection="deptIdList" item="value" index="index"
+						open="AND DEPARTMENT_ID IN (" close=")" separator=", ">
+						#{value}
+					</foreach>
+				</when>
+			</choose>
+			<choose>
+				<when test="startDate != null and endDate != null">
+					AND HIRE_DATE BETWEEN #{startDate} AND #{endDate}
+				</when>
+				<when test=" startDate == null and endDate != null">
+					AND HIRE_DATE &lt;= #{endDate}
+				</when>
+				<when test=" startDate != null and endDate == null">
+					AND HIRE_DATE >= #{startDate}
+				</when>
+			</choose>
+		</trim>
+	</select>
+</mapper>

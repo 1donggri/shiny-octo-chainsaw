@@ -1,0 +1,64 @@
+@charset "UTF-8";
+
+body {
+	background-color: #E0E8F5;
+}
+
+form {
+	background-color: #EEEAE9;
+	border: 1px solid #DFE1E9;
+	padding-top: 5em;
+	width: 40em;
+	margin: 2em auto;
+}
+
+table {
+	width: 95%;
+	margin: 0 auto;
+}
+
+tr * {
+	letter-spacing: 2px;
+	padding-bottom: 10px;
+}
+
+input {
+	background-color: #EEEAE9;
+	border-bottom: 2px dashed;
+	border-left: none;
+	border-right: none;
+	border-top: none;
+}
+
+.label1 {
+	width: 25%;
+	padding-left: 2%;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.input1 {
+	width: 75%;
+	padding-right: 2%;
+	font-size: 18px;
+}
+
+.input1 * {
+	width: 96%;
+}
+
+.email {
+	width: 43%;
+}
+
+button {
+	background-color: #CBDDB7;
+	border: none;
+	width: 100%;
+	margin: 40px auto 5px auto;
+	padding-bottom: 20px;
+	padding-top: 20px;
+	letter-spacing: 10px;
+	font-weight: bold;
+	font-size: 18px;
+}
