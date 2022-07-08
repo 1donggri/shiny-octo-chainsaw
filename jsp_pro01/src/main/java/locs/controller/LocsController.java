@@ -1,4 +1,4 @@
-package dept.controller;
+package locs.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,35 +10,35 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dept.model.DeptDTO;
-import dept.service.DeptService;
+import locs.model.LocsDTO;
+import locs.service.LocsService;
 
-@WebServlet("/depts")
-public class DeptController extends HttpServlet {
+@WebServlet("/locs")
+public class LocsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	DeptService service = new DeptService();
+	private LocsService service = new LocsService();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String search = request.getParameter("search");
 		
-		List<DeptDTO> deptDatas = null;
+		List<LocsDTO> locsDatas = null;
 		if(search == null) {
-			deptDatas = service.getAll();
+			locsDatas = service.getAll();
 		} else {
 			boolean isNumber = search.matches("\\d+");
 			if(isNumber) {
-				DeptDTO data = service.getId(search);
+				LocsDTO data = service.getId(search);
 				if(data != null) {
-					deptDatas = new ArrayList<DeptDTO>();			
-					deptDatas.add(data);
+					locsDatas = new ArrayList<LocsDTO>();
+					locsDatas.add(data);
 				}
 			}
 		}
 		
-		request.setAttribute("deptDatas", deptDatas);
+		request.setAttribute("locsDatas", locsDatas);
 		
-		String view = "/WEB-INF/jsp/dept/index.jsp";
+		String view = "/WEB-INF/jsp/locs/index.jsp";
 		request.getRequestDispatcher(view).forward(request, response);
 	}
 

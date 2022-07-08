@@ -18,4 +18,65 @@ public class DeptDAO {
 		List<DeptDTO> datas = session.selectList("deptMapper.deptSelectAll");
 		return datas;
 	}
+	
+	public DeptDTO searchId(int id) {
+		DeptDTO data = session.selectOne("deptMapper.deptSelectId", id);
+		return data;
+	}
+
+	public boolean insertDept(DeptDTO deptDto) {
+		int result = session.insert("deptMapper.deptInsert", deptDto);
+		if(result == 1) {
+			session.commit();
+			return true;
+		}
+		session.rollback();
+		return false;
+	}
+
+	public boolean existManager(int id) {
+		int result = session.selectOne("deptMapper.exisManager", id);
+		if(result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean existLocation(int id) {
+		int result = session.selectOne("deptMapper.exisLocation", id);
+		if(result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean updateDept(DeptDTO deptDto) {
+		int result = session.update("deptMapper.deptUpdate", deptDto);
+		if(result == 1) {
+			session.commit();
+			return true;
+		}
+		session.rollback();
+		return false;
+	}
+	
+	public void close() {
+		session.close();
+	}
+
+	public boolean deletDept(int id) {
+		int result = session.delete("deptMapper.deptDelete", id);
+		if(result == 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public void commit() {
+		session.commit();
+	}
+
+	public void rollback() {
+		session.rollback();
+	}
 }
