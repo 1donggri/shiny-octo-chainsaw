@@ -1,5 +1,6 @@
 package dept.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dept.model.DeptDAO;
@@ -117,7 +118,7 @@ public class DeptService {
 		}
 		
 		boolean result = dao.deletDept(Integer.parseInt(id));
-		dao.close();
+		
 		if(result) {
 			dao.commit();
 			dao.close();
@@ -126,5 +127,29 @@ public class DeptService {
 		dao.rollback();
 		dao.close();
 		return 0;
+	}
+
+	public List<DeptDTO> getPage(int page, int pageCount) {
+		int pageNumber = page;
+		int start, end;
+		start = (pageNumber - 1) * pageCount;
+		end = pageCount;
+		dao = new DeptDAO();
+		List<DeptDTO> datas = dao.searchPage(start, end);
+		dao.close();
+		return datas;
+	}
+
+	public List<Integer> getPageList(int pageCount) {
+		dao = new DeptDAO();
+		
+		List<Integer> pageList = new ArrayList<Integer>();
+		int total = dao.totalRow();
+		
+		for(int num = 0; num <= (total - 1) / pageCount; num++) {
+			pageList.add(num + 1);
+		}
+		
+		return pageList;
 	}
 }

@@ -30,7 +30,7 @@
 			<input type="text" name="mngId" value="<%=data.getMngId() %>" placeholder="관리자 ID">
 		</div>
 		<div>
-			<input type="text" name="LocId" value="<%=data.getLocId() %>" placeholder="지역 ID">
+			<input type="text" name="locId" value="<%=data.getLocId() %>" placeholder="지역 ID">
 		</div>
 		<div>
 			<button type="submit">저장</button>
