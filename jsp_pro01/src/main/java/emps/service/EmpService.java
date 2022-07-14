@@ -5,6 +5,7 @@ import java.util.List;
 
 import emps.model.EmpDAO;
 import emps.model.EmpDTO;
+import emps.model.EmpDetailDTO;
 
 public class EmpService {
 
@@ -34,6 +35,36 @@ public class EmpService {
 		
 		dao.close();
 		return pageList;
+	}
+
+	public EmpDetailDTO getDetail(int empId) {
+		EmpDAO dao = new EmpDAO();
+		EmpDetailDTO data = dao.selectDetail(empId);
+		dao.close();
+		return data;
+	}
+
+	public boolean setEmployee(EmpDTO updateEmpData, EmpDetailDTO updateEmpDetailData) {
+		EmpDAO dao = new EmpDAO();
+		
+		String email = updateEmpData.getEmail();
+		if(email.contains("@emp.com")) {
+			email = email.replace("@emp.com", "");
+			updateEmpData.setEmail(email);
+		}
+		
+		boolean res1 = dao.updateEmployee(updateEmpData);
+		boolean res2 = dao.updateEmployeeDetail(updateEmpDetailData);
+		
+		if(res1 & res2) {
+			dao.commit();
+			dao.close();
+			return true;
+		}
+		
+		dao.rollback();
+		dao.close();
+		return false;
 	}
 	
 }

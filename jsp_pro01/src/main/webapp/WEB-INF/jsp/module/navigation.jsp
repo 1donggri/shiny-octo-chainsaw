@@ -10,10 +10,10 @@
 	}
 %>
 <header>
-	<nav class="top-nav center">
+	<nav class="top-nav">
 		<ul class="nav">
 			<li class="nav-item dropdown<%=url.contains("/jsp_") ? " active" : "" %>">
-				<a class="nav-link" href="#">JSP/Servlet</a>
+				<a class="nav-link" href="/">JSP/Servlet</a>
 				<ul class="nav dropdown-nav">
 					<li class="nav-item">
 						<a class="nav-link" href="./jsp_script">스크립트 태그</a>
@@ -39,14 +39,22 @@
 				<a class="nav-link" href="./locs">지역</a>
 			</li>
 			<c:if test="${not empty sessionScope.loginData}">
-				<c:url var="logoutUrl" value="/logout"/>
-				<li class="nav-item">
-					<a class="nav-link" href="${logoutUrl}">로그아웃</a>
+			<ul class="nav right">
+				<li class="nav-item dropdown">
+					<a class="nav-link" href="#">${sessionScope.loginData.empName}</a>
+					<ul class="nav dropdown-nav">
+						<c:url var="myInfoUrl" value="/myinfo" />
+						<li class="nav-item">
+							<a class="nav-link" href="${myInfoUrl}">개인정보</a>
+						</li>
+						<c:url var="logoutUrl" value="/logout" />
+						<li class="nav-item">
+							<a class="nav-link" href="${logoutUrl}">로그아웃</a>
+						</li>
+					</ul>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="./myinfo">사용자 이름</a>
-				</li>
-			</c:if>
+			</ul>
+		</c:if>
 		</ul>
 	</nav>
 </header>

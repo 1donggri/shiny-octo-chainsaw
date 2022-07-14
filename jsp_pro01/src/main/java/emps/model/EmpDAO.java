@@ -42,4 +42,21 @@ public class EmpDAO extends AbstractDAO {
 		return rowCount;
 	}
 
+	public EmpDetailDTO selectDetail(int empId) {
+		String mapId = String.format(mapper, "selectDetail");
+		EmpDetailDTO data = session.selectOne(mapId, empId);
+		return data;
+	}
+
+	public boolean updateEmployee(EmpDTO updateEmpData) {
+		String mapId = String.format(mapper, "updateEmployeeDetail");
+		int result = session.update(mapId, updateEmpData);
+		return result == 1 ? true : false;
+	}
+
+	public boolean updateEmployeeDetail(EmpDetailDTO updateEmpDetailData) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }
