@@ -12,18 +12,61 @@
 </head>
 <script type="text/javascript">
 	window.onload = function() {
-		var form = document.form[0];
-		form.
+		var form = document.forms[0];
+		form.email.addEventListener("input", enableSaveButton);
+		form.phone.addEventListener("input", enableSaveButton);
+		
+		prevImage.addEventListener("click", function(e){
+			btnImage.click();
+		});
+		
+		btnImage.addEventListener("change", showPreview);
+	}
+	
+	function ajaxUploadImage(e) {
+		var file = e.target.files[0];
+		var fData = new FormData();
+		fData.append("uploadImage", file, file.name);
+		
+		$.ajax({
+			type: "post",
+			url: "/ajax/imageUpload",
+			enctype: "multipart/form-data",
+			data: fData,
+			processData: false,		// 문자열에는 쓰지 않음
+			contentType: false,		
+			dataType: "json",
+			success: function(data, status){
+				prevImage.src = data.loc;
+			},
+			error: function(data, status) {
+				prevImage.src = data.loc;
+			}
+		});
+	}
+	
+	function showPreview(e) {
+		var file = e.target.files[0];
+		var imgUrl = URL.createObjectURL(file);
+		prevImage.src = imgUrl;
+	}
+
+	function enableSaveButton(e) {
+		var submit = document.querySelector("button[type='submit']");
+		var enable = submit.getAttribute("class").replace("disable", "");
+		submit.setAttribute("class", enable);
 	}
 </script>
 <body>
 	<%@ include file="../module/navigation.jsp" %>
 	<section class="container">
 		<c:url var="updateUrl" value="/myinfo"></c:url>
-		<form class="large-form" action="${updateUrl}" method="post">
+		<form class="large-form" action="${updateUrl}" method="post" enctype="multipart/form-data">
 			<div class="img-form left">
-				<c:url var="imgUrl" value="/static/img/emp/${sessionScope.loginData.empId}.png" />
+				<c:url var="imgUrl" value="/static/img/emp/${imgPath}" />
 				<img class="img-360" alt="여기에는 증명 사진이 배치됩니다." src="${imgUrl}">
+				<br>
+				<input type="file" id="dtnImage" name="uploadImage">
 			</div>
 			<div class="input-form inline">
 				<div class="input-form">

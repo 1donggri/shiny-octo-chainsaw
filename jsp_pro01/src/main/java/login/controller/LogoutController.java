@@ -18,8 +18,10 @@ public class LogoutController extends HttpServlet {
 		
 		if(session.getAttribute("loginData") != null) {
 			session.invalidate();	// 세션 만료
-			response.sendRedirect(request.getContextPath() + "/");
+			
 		}
+		
+		response.sendRedirect(request.getContextPath() + "/");
 	}
 
 }

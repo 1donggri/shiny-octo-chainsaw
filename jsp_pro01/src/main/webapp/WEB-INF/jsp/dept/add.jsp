@@ -25,23 +25,17 @@
 			<div class="input-form wide">
 				<label class="input-label">부서명</label>
 				<input type="text" class="input-text" name="deptName" value="${data.deptName}" data-required="부서명을 입력하세요.">
-				<c:if test="${not empty error.deptName}">
-					<label class="input-label-error">${error.deptName}</label>
-				</c:if>
+				<label class="input-label-error"></label>
 			</div>
 			<div class="input-form wide">
 				<label class="input-label">관리자ID</label>
 				<input type="text" class="input-text" name="mngId" value="${data.mngId == -1 ? '' : data.mngId}" data-required="관리자 ID를 입력하세요.">
-				<c:if test="${not empty error.mngId}">
-					<label class="input-label-error">${error.mngId}</label>
-				</c:if>
+				<label class="input-label-error"></label>
 			</div>
 			<div class="input-form wide">
 				<label class="input-label">지역ID</label>
 				<input type="text" class="input-text" name="locId" value="${data.locId == -1 ? '' : data.locId}" data-required="지역 ID를 입력하세요.">
-				<c:if test="${not empty error.locId}">
-					<label class="input-label-error">${error.locId}</label>
-				</c:if>
+				<label class="input-label-error"></label>
 			</div>
 			<div class="input-form wide form-right">
 				<button class="btn btn-outline btn-ok" type="submit">저장</button>
