@@ -22,4 +22,11 @@ public class Parameter {
 		return Integer.parseInt(result);
 	}
 
+	public static String getDefaultOrValue(HttpServletRequest request, String param, String defaultValue) {
+		String value = request.getParameter(param);
+		if(value == null) value = defaultValue;
+		if(value.isEmpty()) value = defaultValue;
+		return value;
+	}
+
 }

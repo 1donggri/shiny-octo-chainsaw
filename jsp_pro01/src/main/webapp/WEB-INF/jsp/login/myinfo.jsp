@@ -114,7 +114,7 @@
 			</div>
 			<div class="input-form inline">
 				<div class="input-form">
-					<fmt:formatDate value="fmtHireDate" value="${empDetail.hireDate}" dateStyle="long"/>
+					<fmt:formatDate var="fmtHireDate" value="${empDetail.hireDate}" dateStyle="long"/>
 					<label class="input-label w-100">입사일</label>
 					<input class="input-text w-auto" type="text" name="hireDate" value="${empDetail.hireDate}">
 				</div>

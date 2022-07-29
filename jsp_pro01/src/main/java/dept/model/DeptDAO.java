@@ -76,6 +76,23 @@ public class DeptDAO {
 		}
 		return false;
 	}
+	
+
+	public boolean selectManager(int id) {
+		int result = session.selectOne("deptMapper.existsManager", id);
+		if(result >= 1) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean selectLocation(int id) {
+		int result = session.selectOne("deptMapper.existsLocation", id);
+		if(result >= 1) {
+			return true;
+		}
+		return false;
+	}
 
 	public void commit() {
 		session.commit();
@@ -107,4 +124,5 @@ public class DeptDAO {
 		int rowCount = session.selectOne("deptMapper.deptTotalRow");
 		return rowCount;
 	}
+
 }

@@ -1,5 +1,6 @@
 package myinfo.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -13,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.websocket.Session;
-
-import org.apache.tomcat.jni.File;
 
 import dept.model.DeptDTO;
 import dept.service.DeptService;
@@ -53,14 +52,8 @@ public class MyinfoController extends HttpServlet {
 			
 			// 로그인을 한 사원의 이미지 /static/img/emp/사원ID.png 가 있는지 확인 후
 			// 없으면 default.png 를 사용하는 것으로 하고 있으면 사원ID.png 를 사용하는 것으로 만든다.
-			String realPath = request.getServletContext().getRealPath("/static/img/emp/");
-			File file = new File(realPath + empData.getEmpId() + ".png");
-			
-			if(file.exists()) {
-				request.setAttribute("imagePath", "/static/img/emp/" + empData.getEmpId() + ".png");
-			} else {
-				request.setAttribute("imagePath", "/static/img/emp/default.png");
-			}
+			String imagePath = empService.getProfileImage(request, "/static/img/emp/", empData);
+			request.setAttribute("imagePath", imagePath);
 			
 			RequestDispatcher rd = request.getRequestDispatcher(view);
 			rd.forward(request, response);
