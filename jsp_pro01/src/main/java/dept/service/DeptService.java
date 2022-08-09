@@ -1,22 +1,60 @@
 package dept.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import dept.model.DeptDAO;
 import dept.model.DeptDTO;
 
 public class DeptService {
-	
-	private DeptDAO dao;
-	
+
 	public List<DeptDTO> getAll() {
-		dao =  new DeptDAO();
+		DeptDAO dao = new DeptDAO();
 		
 		List<DeptDTO> datas = dao.searchAll();
 		
 		dao.close();
 		return datas;
+	}
+	
+	public List<DeptDTO> getPage(int page, int pageCount) {
+		int pageNumber = page;
+		int start, end;
+		start = (pageNumber - 1) * pageCount;
+		end = pageCount;
+		DeptDAO dao = new DeptDAO();
+		List<DeptDTO> datas = dao.searchPage(start, end);
+		dao.close();
+		return datas;
+	}
+	
+	/*
+	public List<DeptDTO> getPage(int pageNumber) {
+		Map<String, Integer> page = new HashMap<String, Integer>();
+		page.put("start", (pageNumber - 1) * 10 + 1);
+		page.put("end", (pageNumber - 1) * 10 + 10);
+		
+		dao = new DeptDAO();
+		List<DeptDTO> datas = dao.searchPage(page);
+		dao.close();
+		
+		return datas;
+	}
+	*/
+	
+	public List<Integer> getPageList(int pageCount) {
+		DeptDAO dao = new DeptDAO();
+		
+		List<Integer> pageList = new ArrayList<Integer>();
+		int total = dao.totalRow();
+		
+		for(int num = 0; num <= (total - 1) / pageCount; num++) {
+			pageList.add(num + 1);
+		}
+		dao.close();
+		return pageList;
 	}
 	
 	public DeptDTO getId(String id) {
@@ -32,7 +70,7 @@ public class DeptService {
 	}
 	
 	private DeptDTO _getId(int id) {
-		dao = new DeptDAO();
+		DeptDAO dao = new DeptDAO();
 		
 		DeptDTO data = dao.searchId(id);
 		
@@ -41,7 +79,7 @@ public class DeptService {
 	}
 
 	public DeptDTO addDept(String deptId, String deptName, String mngId, String locId) {
-		dao = new DeptDAO();
+		DeptDAO dao = new DeptDAO();
 		
 		DeptDTO deptDto = null;
 		if(deptId.matches("\\d+") && mngId.matches("\\d+") && locId.matches("\\d+")) {
@@ -78,47 +116,51 @@ public class DeptService {
 					dao.close();
 					return null;
 				}
-			}	
+			}
 		}
-		
-		dao.commit();
+		dao.rollback();
 		dao.close();
 		return deptDto;
 	}
 
 	public int modifyDept(DeptDTO data) {
-		dao = new DeptDAO();
+		DeptDAO dao = new DeptDAO();
 		
 		if(!dao.existManager(data.getMngId())) {
+			dao.rollback();
 			dao.close();
 			return -1;
 		}
 		
 		if(!dao.existLocation(data.getLocId())) {
+			dao.rollback();
 			dao.close();
 			return -2;
 		}
 		
 		boolean isSaved = dao.updateDept(data);
-		dao.close();
 		
 		if(isSaved) {
+			dao.commit();
+			dao.close();
 			return 1;
 		}
 		
+		dao.rollback();
+		dao.close();
 		return 0;
 	}
 
 	public int deleteDept(String id) {
-		dao = new DeptDAO();
-
+		DeptDAO dao = new DeptDAO();
+		
 		if(dao.searchId(Integer.parseInt(id)) == null) {
+			dao.rollback();
 			dao.close();
 			return -1;	// 삭제 대상이 없음을 알림
 		}
 		
-		boolean result = dao.deletDept(Integer.parseInt(id));
-		
+		boolean result = dao.deleteDept(Integer.parseInt(id));
 		if(result) {
 			dao.commit();
 			dao.close();
@@ -129,39 +171,15 @@ public class DeptService {
 		return 0;
 	}
 
-	public List<DeptDTO> getPage(int page, int pageCount) {
-		int pageNumber = page;
-		int start, end;
-		start = (pageNumber - 1) * pageCount;
-		end = pageCount;
-		dao = new DeptDAO();
-		List<DeptDTO> datas = dao.searchPage(start, end);
-		dao.close();
-		return datas;
-	}
-
-	public List<Integer> getPageList(int pageCount) {
-		dao = new DeptDAO();
-		
-		List<Integer> pageList = new ArrayList<Integer>();
-		int total = dao.totalRow();
-		
-		for(int num = 0; num <= (total - 1) / pageCount; num++) {
-			pageList.add(num + 1);
-		}
-		
-		return pageList;
-	}
-
 	public boolean existsManager(String value) {
-		dao = new DeptDAO();
+		DeptDAO dao = new DeptDAO();
 		boolean result = dao.selectManager(Integer.parseInt(value));
 		dao.close();
 		return result;
 	}
 
 	public boolean existsLocation(String value) {
-		dao = new DeptDAO();
+		DeptDAO dao = new DeptDAO();
 		boolean result = dao.selectLocation(Integer.parseInt(value));
 		dao.close();
 		return result;

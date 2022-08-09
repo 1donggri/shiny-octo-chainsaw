@@ -36,6 +36,21 @@
 		    ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
 		 ORDER BY E.EMPLOYEE_ID
 	</select>
+	<select id="selectId" resultMap="empDtoMap">
+		SELECT E.EMPLOYEE_ID
+		     , CONCAT(E.FIRST_NAME, ' ' || E.LAST_NAME) AS EMPLOYEE_NAME
+		     , CONCAT(E.EMAIL, '@emp.com') AS EMAIL
+		     , J.JOB_TITLE
+		     , E.JOB_ID
+		     , D.DEPARTMENT_NAME
+		     , E.DEPARTMENT_ID
+		  FROM EMPLOYEES E
+		  JOIN JOBS J
+		    ON E.JOB_ID = J.JOB_ID
+		  JOIN DEPARTMENTS D
+		    ON E.DEPARTMENT_ID = D.DEPARTMENT_ID
+		 WHERE E.EMPLOYEE_ID = #{id}
+	</select>
 	<select id="totalRow" resultType="_int">
 		SELECT COUNT(*)
 		  FROM EMPLOYEES E
