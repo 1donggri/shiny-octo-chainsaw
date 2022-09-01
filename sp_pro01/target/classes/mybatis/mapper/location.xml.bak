@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="locsMapper">
+	<resultMap type="locsDto" id="locsDtoMap">
+		<result property="locsId" column="LOCATION_ID"/>
+		<result property="streetAddress" column="STREET_ADDRESS"/>
+		<result property="postalCode" column="POSTAL_CODE"/>
+		<result property="city" column="CITY"/>
+		<result property="stateProvince" column="STATE_PROVINCE"/>
+		<result property="countryId" column="COUNTRY_ID"/>
+	</resultMap>
+	<select id="locsSelectAll" resultMap="locsDtoMap">
+		SELECT * FROM LOCATIONS
+	</select>
+	<select id="locsSelectId" resultMap="locsDtoMap">
+		SELECT * FROM LOCATIONS
+		 WHERE LOCATION_ID = #{id}
+	</select>
+	<select id="exitCountryId" resultType="_int">
+		SELECT COUNT(*) FROM COUNTRIES
+		 WHERE COUNTRY_ID = #{id}
+	</select>
+	<insert id="locsInsert" parameterType="locsDto">
+		INSERT INTO LOCATIONS VALUES (#{locsId}, #{streetAddress}, #{postalCode}, #{stateProvince}, #{city}, #{countryId})
+	</insert>
+	<update id="locsUpdate" parameterType="locsDto">
+		UPDATE LOCATIONS
+		   SET DEPARTMENT_NAME = #{streetAddress}
+		     , POSTAL_CODE = #{postalCode}
+		     , CITY = #{city}
+		     , STATE_PROVINCE = #{stateProvince}
+		     , COUNTRY_ID = #{countryId}
+		 WHERE LOCATION_ID = #{locsId}
+	</update>
+</mapper>
